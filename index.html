@@ -202,11 +202,12 @@
 
         .thumb {
             width: 100%;
-            height: 180px;
+            height: 200px;
             border-radius: 10px;
             overflow: hidden;
             flex-shrink: 0;
             border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.02);
         }
 
         .thumb img {
@@ -305,41 +306,44 @@
         }
 
         @keyframes addPulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15);
-            }
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); }
+            50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(212, 175, 55, 0.15); }
         }
 
         @keyframes successPulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
-            }
-            25% {
-                transform: scale(1.08);
-                box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4);
-            }
-            50% {
-                transform: scale(0.95);
-                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
-            }
-            75% {
-                transform: scale(1.03);
-                box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
-            }
+            0% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15); }
+            25% { transform: scale(1.08); box-shadow: 0 8px 30px rgba(16, 185, 129, 0.4); }
+            50% { transform: scale(0.95); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3); }
+            75% { transform: scale(1.03); box-shadow: 0 7px 25px rgba(16, 185, 129, 0.35); }
+            100% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15); }
+        }
+
+        /* Search */
+        .search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--glass);
+            backdrop-filter: blur(6px);
+            padding: 10px 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .search input {
+            background: transparent;
+            border: 0;
+            outline: 0;
+            color: inherit;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .search input::placeholder {
+            color: var(--muted);
         }
 
         /* Cart */
@@ -677,14 +681,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .footer {
@@ -704,78 +702,6 @@
             margin: 8px 0 16px 0;
         }
 
-        /* Responsive */
-        @media (min-width: 768px) {
-            body {
-                padding: 24px;
-            }
-
-            .menu-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .card-header {
-                flex-direction: row;
-            }
-
-            .thumb {
-                width: 140px;
-                height: 140px;
-                flex-shrink: 0;
-            }
-
-            .cart-actions {
-                flex-direction: row;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .menu-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 767px) {
-            .tab {
-                padding: 8px 14px;
-                font-size: 13px;
-            }
-            .tabs-scroll {
-                justify-content: center;
-            }
-            .cafe-name {
-                font-size: 2.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .tab {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-            .tabs-scroll {
-                gap: 5px;
-            }
-            .cafe-name {
-                font-size: 2rem;
-            }
-            .thumb {
-                height: 150px;
-            }
-        }
-
-        @media print {
-            body {
-                background: white;
-                color: black;
-            }
-            .cart-container,
-            .cart-modal,
-            .btn-ghost {
-                display: none;
-            }
-        }
-
         .visit-again {
             text-align: center;
             color: #FFD700;
@@ -785,15 +711,46 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            body { padding: 24px; }
+            .menu-grid { grid-template-columns: repeat(2, 1fr); }
+            .card-header { flex-direction: row; }
+            .thumb { width: 150px; height: 150px; flex-shrink: 0; }
+            .cart-actions { flex-direction: row; }
+        }
+
+        @media (min-width: 1024px) {
+            .menu-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 767px) {
+            .tab { padding: 8px 14px; font-size: 13px; }
+            .tabs-scroll { justify-content: center; }
+            .cafe-name { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .tab { padding: 6px 12px; font-size: 12px; }
+            .tabs-scroll { gap: 5px; }
+            .cafe-name { font-size: 2rem; }
+            .thumb { height: 160px; }
+        }
+
+        @media print {
+            body { background: white; color: black; }
+            .cart-container, .cart-modal, .btn-ghost { display: none; }
+        }
     </style>
 </head>
- 
+
 <body>
     <div class="container">
         <!-- Header -->
         <div class="cafe-header">
             <div style="display:flex; justify-content:center; align-items:center; gap:15px; margin-bottom:15px; flex-wrap:wrap;">
-                <img src="logo.png" alt="RS LAUNDRY" style="max-width:200px; height:auto;">
+                <img src="logo.png" alt="RS LAUNDRY" style="max-width:200px; height:auto;" onerror="this.style.display='none'">
             </div>
             <div class="cafe-name">RS LAUNDRY</div>
             <div class="cafe-subtitle">Clean Clothes · Fresh Life</div>
@@ -819,14 +776,12 @@
         <!-- Menu -->
         <main class="menu">
             <div class="menu-head">
-                <div class="controls">
-                    <div class="search" role="search">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                            <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
-                            <circle cx="11" cy="11" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></circle>
-                        </svg>
-                        <input id="search" placeholder="Search services..." style="background:transparent; border:0; outline:0; color:inherit; font-size:16px; width:100%; padding:8px 0;" />
-                    </div>
+                <div class="search" role="search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 21l-4.35-4.35"></path>
+                        <circle cx="11" cy="11" r="6"></circle>
+                    </svg>
+                    <input id="search" placeholder="Search services..." />
                 </div>
             </div>
 
@@ -936,47 +891,47 @@
 
     <script>
         // ============================================================
-        // LAUNDRY DATA - Based on your rate list
+        // LAUNDRY DATA - Each service has its own image
         // ============================================================
         const data = [
             // REGULAR LAUNDRY
-            { id: 1, cat: "Regular Laundry", name: "Wash + Fold (धुलाई + फोल्ड)", price: "₹69/kg", desc: "Regular wash & fold service per kg.", tags: ["Regular", "Wash", "Fold"] },
-            { id: 2, cat: "Regular Laundry", name: "Wash + Iron (धुलाई + इन्सी)", price: "₹99/kg", desc: "Regular wash & iron service per kg.", tags: ["Regular", "Wash", "Iron"] },
-            { id: 3, cat: "Regular Laundry", name: "Steam Iron (स्टीम इन्सी)", price: "₹12/piece", desc: "Premium steam ironing per garment.", tags: ["Steam", "Iron"] },
+            { id: 1, cat: "Regular Laundry", name: "Wash + Fold (धुलाई + फोल्ड)", price: "₹69/kg", desc: "Regular wash & fold service per kg.", tags: ["Regular", "Wash", "Fold"], img: "img/wash_fold.jpg" },
+            { id: 2, cat: "Regular Laundry", name: "Wash + Iron (धुलाई + इन्सी)", price: "₹99/kg", desc: "Regular wash & iron service per kg.", tags: ["Regular", "Wash", "Iron"], img: "img/wash_iron.jpg" },
+            { id: 3, cat: "Regular Laundry", name: "Steam Iron (स्टीम इन्सी)", price: "₹12/piece", desc: "Premium steam ironing per garment.", tags: ["Steam", "Iron"], img: "img/steam_iron.jpg" },
 
             // IRONING PER PIECE
-            { id: 4, cat: "Ironing", name: "T-Shirt / Shirt (साईट / टी-शर्ट)", price: "₹12", desc: "Ironing per T-Shirt or Shirt.", tags: ["Ironing", "T-Shirt", "Shirt"] },
-            { id: 5, cat: "Ironing", name: "Pant / Jeans (पॅन्ट / जीन्स)", price: "₹15", desc: "Ironing per Pant or Jeans.", tags: ["Ironing", "Pant", "Jeans"] },
-            { id: 6, cat: "Ironing", name: "Kurta / Top (कुर्ल / टॉप)", price: "₹15", desc: "Ironing per Kurta or Top.", tags: ["Ironing", "Kurta", "Top"] },
-            { id: 7, cat: "Ironing", name: "Saree (साडी)", price: "₹60+", desc: "Saree ironing (price may vary).", tags: ["Ironing", "Saree"] },
-            { id: 8, cat: "Ironing", name: "Bedsheet (बेडशीट)", price: "₹40", desc: "Bedsheet ironing.", tags: ["Ironing", "Bedsheet"] },
-            { id: 9, cat: "Ironing", name: "Blanket / Razai (ब्लॅकेट / रजई)", price: "₹80+", desc: "Blanket or Razai ironing (price may vary).", tags: ["Ironing", "Blanket", "Razai"] },
+            { id: 4, cat: "Ironing", name: "T-Shirt / Shirt (साईट / टी-शर्ट)", price: "₹12", desc: "Ironing per T-Shirt or Shirt.", tags: ["Ironing", "T-Shirt", "Shirt"], img: "img/shirt_iron.jpg" },
+            { id: 5, cat: "Ironing", name: "Pant / Jeans (पॅन्ट / जीन्स)", price: "₹15", desc: "Ironing per Pant or Jeans.", tags: ["Ironing", "Pant", "Jeans"], img: "img/pant_iron.jpg" },
+            { id: 6, cat: "Ironing", name: "Kurta / Top (कुर्ल / टॉप)", price: "₹15", desc: "Ironing per Kurta or Top.", tags: ["Ironing", "Kurta", "Top"], img: "img/kurta_iron.jpg" },
+            { id: 7, cat: "Ironing", name: "Saree (साडी)", price: "₹60+", desc: "Saree ironing (price may vary).", tags: ["Ironing", "Saree"], img: "img/saree_iron.jpg" },
+            { id: 8, cat: "Ironing", name: "Bedsheet (बेडशीट)", price: "₹40", desc: "Bedsheet ironing.", tags: ["Ironing", "Bedsheet"], img: "img/bedsheet_iron.jpg" },
+            { id: 9, cat: "Ironing", name: "Blanket / Razai (ब्लॅकेट / रजई)", price: "₹80+", desc: "Blanket or Razai ironing.", tags: ["Ironing", "Blanket", "Razai"], img: "img/blanket_iron.jpg" },
 
             // DRY CLEAN
-            { id: 10, cat: "Dry Clean", name: "Shirt / T-Shirt (शर्ट / टी-शर्ट)", price: "₹90", desc: "Dry clean per Shirt or T-Shirt.", tags: ["Dry Clean", "Shirt", "T-Shirt"] },
-            { id: 11, cat: "Dry Clean", name: "Pant / Jeans (पॅन्ट / जीन्स)", price: "₹100", desc: "Dry clean per Pant or Jeans.", tags: ["Dry Clean", "Pant", "Jeans"] },
-            { id: 12, cat: "Dry Clean", name: "Kurta (कुर्ल)", price: "₹120", desc: "Dry clean per Kurta.", tags: ["Dry Clean", "Kurta"] },
-            { id: 13, cat: "Dry Clean", name: "Saree (साडी) - Regular", price: "₹180+", desc: "Regular Saree dry clean.", tags: ["Dry Clean", "Saree"] },
-            { id: 14, cat: "Dry Clean", name: "Saree (साडी) - Silk / Heavy", price: "₹300+", desc: "Silk or Heavy Saree dry clean.", tags: ["Dry Clean", "Saree", "Silk", "Heavy"] },
-            { id: 15, cat: "Dry Clean", name: "Blazer / Coat (ब्लेडर / कोट)", price: "₹250", desc: "Blazer or Coat dry clean.", tags: ["Dry Clean", "Blazer", "Coat"] },
-            { id: 16, cat: "Dry Clean", name: "Suit (सूट) - 2 Piece", price: "₹350", desc: "2 Piece Suit dry clean.", tags: ["Dry Clean", "Suit"] },
-            { id: 17, cat: "Dry Clean", name: "Suit (सूट) - 3 Piece", price: "₹450", desc: "3 Piece Suit dry clean.", tags: ["Dry Clean", "Suit"] },
-            { id: 18, cat: "Dry Clean", name: "Sherwani (शेरवानी)", price: "₹500+", desc: "Sherwani dry clean (price may vary).", tags: ["Dry Clean", "Sherwani"] },
-            { id: 19, cat: "Dry Clean", name: "Lehenga / Heavy Dress (लहेंगा / हेबी झेस)", price: "₹450+", desc: "Lehenga or Heavy Dress dry clean.", tags: ["Dry Clean", "Lehenga", "Heavy"] },
-            { id: 20, cat: "Dry Clean", name: "Sweater / Jacket (स्वेटर / जेकेट)", price: "₹180+", desc: "Sweater or Jacket dry clean.", tags: ["Dry Clean", "Sweater", "Jacket"] },
+            { id: 10, cat: "Dry Clean", name: "Shirt / T-Shirt (शर्ट / टी-शर्ट)", price: "₹90", desc: "Dry clean per Shirt or T-Shirt.", tags: ["Dry Clean", "Shirt", "T-Shirt"], img: "img/dryclean_shirt.jpg" },
+            { id: 11, cat: "Dry Clean", name: "Pant / Jeans (पॅन्ट / जीन्स)", price: "₹100", desc: "Dry clean per Pant or Jeans.", tags: ["Dry Clean", "Pant", "Jeans"], img: "img/dryclean_pant.jpg" },
+            { id: 12, cat: "Dry Clean", name: "Kurta (कुर्ल)", price: "₹120", desc: "Dry clean per Kurta.", tags: ["Dry Clean", "Kurta"], img: "img/dryclean_kurta.jpg" },
+            { id: 13, cat: "Dry Clean", name: "Saree (साडी) - Regular", price: "₹180+", desc: "Regular Saree dry clean.", tags: ["Dry Clean", "Saree"], img: "img/dryclean_saree.jpg" },
+            { id: 14, cat: "Dry Clean", name: "Saree (साडी) - Silk / Heavy", price: "₹300+", desc: "Silk or Heavy Saree dry clean.", tags: ["Dry Clean", "Saree", "Silk", "Heavy"], img: "img/dryclean_silk_saree.jpg" },
+            { id: 15, cat: "Dry Clean", name: "Blazer / Coat (ब्लेडर / कोट)", price: "₹250", desc: "Blazer or Coat dry clean.", tags: ["Dry Clean", "Blazer", "Coat"], img: "img/dryclean_blazer.jpg" },
+            { id: 16, cat: "Dry Clean", name: "Suit (सूट) - 2 Piece", price: "₹350", desc: "2 Piece Suit dry clean.", tags: ["Dry Clean", "Suit"], img: "img/dryclean_suit.jpg" },
+            { id: 17, cat: "Dry Clean", name: "Suit (सूट) - 3 Piece", price: "₹450", desc: "3 Piece Suit dry clean.", tags: ["Dry Clean", "Suit"], img: "img/dryclean_suit_3piece.jpg" },
+            { id: 18, cat: "Dry Clean", name: "Sherwani (शेरवानी)", price: "₹500+", desc: "Sherwani dry clean (price may vary).", tags: ["Dry Clean", "Sherwani"], img: "img/dryclean_sherwani.jpg" },
+            { id: 19, cat: "Dry Clean", name: "Lehenga / Heavy Dress (लहेंगा)", price: "₹450+", desc: "Lehenga or Heavy Dress dry clean.", tags: ["Dry Clean", "Lehenga", "Heavy"], img: "img/dryclean_lehenga.jpg" },
+            { id: 20, cat: "Dry Clean", name: "Sweater / Jacket (स्वेटर / जेकेट)", price: "₹180+", desc: "Sweater or Jacket dry clean.", tags: ["Dry Clean", "Sweater", "Jacket"], img: "img/dryclean_sweater.jpg" },
 
             // HOUSEHOLD
-            { id: 21, cat: "Household", name: "Bedsheet Wash (बेडशीट वॉश)", price: "₹80", desc: "Bedsheet washing service.", tags: ["Household", "Bedsheet", "Wash"] },
-            { id: 22, cat: "Household", name: "Blanket Wash (ब्लॅकेट वॉश)", price: "₹180+", desc: "Blanket washing (price may vary).", tags: ["Household", "Blanket", "Wash"] },
-            { id: 23, cat: "Household", name: "Razai / Quilt Wash (रजई / ब्लेल्ट)", price: "₹220+", desc: "Razai or Quilt washing (price may vary).", tags: ["Household", "Razai", "Quilt"] },
-            { id: 24, cat: "Household", name: "Curtains (पडदे)", price: "₹120+", desc: "Curtain washing (price may vary).", tags: ["Household", "Curtains"] },
-            { id: 25, cat: "Household", name: "Sofa Cover (सोफा कव्हर)", price: "₹100+", desc: "Sofa cover washing (price may vary).", tags: ["Household", "Sofa Cover"] },
+            { id: 21, cat: "Household", name: "Bedsheet Wash (बेडशीट वॉश)", price: "₹80", desc: "Bedsheet washing service.", tags: ["Household", "Bedsheet", "Wash"], img: "img/bedsheet_wash.jpg" },
+            { id: 22, cat: "Household", name: "Blanket Wash (ब्लॅकेट वॉश)", price: "₹180+", desc: "Blanket washing (price may vary).", tags: ["Household", "Blanket", "Wash"], img: "img/blanket_wash.jpg" },
+            { id: 23, cat: "Household", name: "Razai / Quilt Wash (रजई)", price: "₹220+", desc: "Razai or Quilt washing.", tags: ["Household", "Razai", "Quilt"], img: "img/razai_wash.jpg" },
+            { id: 24, cat: "Household", name: "Curtains (पडदे)", price: "₹120+", desc: "Curtain washing (price may vary).", tags: ["Household", "Curtains"], img: "img/curtain_wash.jpg" },
+            { id: 25, cat: "Household", name: "Sofa Cover (सोफा कव्हर)", price: "₹100+", desc: "Sofa cover washing.", tags: ["Household", "Sofa Cover"], img: "img/sofa_cover_wash.jpg" },
 
             // SPECIAL SERVICES
-            { id: 26, cat: "Special", name: "White Clothes Starch / Stiff Finish", price: "₹50", desc: "Starch & stiff finish for white clothes.", tags: ["Special", "Starch", "White Clothes"] },
-            { id: 27, cat: "Special", name: "Saree Roll Press (साडी रोल प्रेस)", price: "₹50", desc: "Saree roll press service.", tags: ["Special", "Saree", "Roll Press"] },
-            { id: 28, cat: "Special", name: "Express Service (एक्सप्रेस सेवा)", price: "₹50", desc: "Quick express service (subject to availability).", tags: ["Special", "Express"] },
-            { id: 29, cat: "Special", name: "Wedding Clothes Special Care", price: "₹50", desc: "Special care for wedding clothes.", tags: ["Special", "Wedding", "Care"] }
+            { id: 26, cat: "Special", name: "White Clothes Starch / Stiff Finish", price: "₹50", desc: "Starch & stiff finish for white clothes.", tags: ["Special", "Starch"], img: "img/starch_finish.jpg" },
+            { id: 27, cat: "Special", name: "Saree Roll Press (साडी रोल प्रेस)", price: "₹50", desc: "Saree roll press service.", tags: ["Special", "Saree", "Roll Press"], img: "img/saree_roll_press.jpg" },
+            { id: 28, cat: "Special", name: "Express Service (एक्सप्रेस सेवा)", price: "₹50", desc: "Quick express service (subject to availability).", tags: ["Special", "Express"], img: "img/express_service.jpg" },
+            { id: 29, cat: "Special", name: "Wedding Clothes Special Care", price: "₹50", desc: "Special care for wedding clothes.", tags: ["Special", "Wedding"], img: "img/wedding_care.jpg" }
         ];
 
         // ============================================================
@@ -1038,7 +993,6 @@
             }
         }
 
-        // Toggle cart modal
         cartButton.addEventListener('click', () => {
             cartModal.classList.add('open');
             updateCustomerDetailsSummary();
@@ -1048,7 +1002,6 @@
             cartModal.classList.remove('open');
         });
 
-        // Add to cart
         function addToCart(item, button) {
             const existingItem = cart.find(cartItem => cartItem.id === item.id);
 
@@ -1155,7 +1108,6 @@
             }, 500);
         });
 
-        // WhatsApp Order
         whatsappOrder.addEventListener('click', () => {
             if (cart.length === 0) {
                 alert('Your cart is empty!');
@@ -1193,7 +1145,7 @@
             message += `🙏 Thank you for your order!`;
 
             const encodedMessage = encodeURIComponent(message);
-            const whatsappURL = `https://wa.me/918007627774?text=${encodedMessage}`;
+            const whatsappURL = `https://wa.me/917588003979?text=${encodedMessage}`;
 
             window.open(whatsappURL, '_blank');
 
@@ -1202,7 +1154,7 @@
             }, 1000);
         });
 
-        // Render menu items
+        // Render menu items with individual images
         function renderMenuItems(items) {
             const menuGrid = document.getElementById('menuGrid');
 
@@ -1215,8 +1167,8 @@
                 <div class="card" data-cat="${item.cat}">
                     <div class="card-header">
                         <div class="thumb">
-                            <img src="img/${item.cat.toLowerCase().replace(/ /g,'_')}.jpg" alt="${item.name}" 
-                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE4MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTgwIiBmaWxsPSJyZ2JhKDI1NSwgMjU1LCAyNTUsIDAuMDMpIi8+Cjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0iY2VudHJhbCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjEpIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTQiPiR7aXRlbS5jYXR9PC90ZXh0Pgo8L3N2Zz4='">
+                            <img src="${item.img}" alt="${item.name}" 
+                                 onerror="this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.1);font-size:14px;text-align:center;padding:10px;\\'>${item.cat}<br>📸</div>'">
                         </div>
                         <div class="card-info">
                             <h3 class="dish">${item.name}</h3>
@@ -1234,7 +1186,6 @@
             `).join('');
         }
 
-        // Filter by category
         function filterByCategory(category) {
             if (category === 'all') {
                 renderMenuItems(data);
@@ -1244,7 +1195,6 @@
             }
         }
 
-        // Search
         function searchItems(query) {
             const filteredItems = data.filter(item =>
                 item.name.toLowerCase().includes(query.toLowerCase()) ||
